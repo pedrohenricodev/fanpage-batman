@@ -1,0 +1,89 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #dc2626;
+    min-height: 100vh;
+}
+
+/* BANNER: só aparece no topo */
+.BannerPage img {
+    display: block;
+    width: 100%;
+    height: auto;   /* mostra a imagem inteira */
+}
+
+/* BARRA FIXA: só nome da página + nav, acompanha até o final */
+.SiteHeader {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-bottom: 2px solid #dc2626;
+}
+
+.NavPage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 2rem;
+}
+
+.NavPage h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: #dc2626;
+}
+
+.NavPage ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;      /* tira as bolinhas */
+    margin: 0;
+    padding: 0;
+}
+
+.NavPage a {
+    color: #ffffff;
+    text-decoration: none; /* tira o sublinhado roxo */
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
+
+.NavPage a:hover,
+.NavPage a[aria-current="page"] {
+    color: #dc2626;
+}
+
+/* Texto de boas-vindas */
+.Intro {
+    text-align: center;
+    padding: 2rem 1rem; /* espaçamento esquerda, direita, cima e baixo*/
+}
+/* Evita imagens gigantes na galeria */
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    text-align:center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.92);
+    border-top: 2px solid #dc2626;
+}
