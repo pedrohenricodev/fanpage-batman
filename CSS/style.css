@@ -1,3 +1,20 @@
+
+:root {
+    --fundo: #0a1418;          /* preto esverdeado (noite de Gotham) */
+    --fundo-glow: #12303a;     /* azul-petróleo do brilho no topo */
+    --superficie: #101f26;     /* painéis */
+    --superficie-2: #16303a;   /* cards */
+    --borda: #234a55;
+    --borda-forte: #2f6b78;
+
+    --texto: #efe6cf;          /* creme do papel / pele nas capas */
+    --texto-suave: #8fa9ab;    /* cinza-esverdeado do uniforme */
+
+    --destaque: #f2c94c;       /* amarelo da logo "BATMAN" */
+    --laranja: #e8832a;        /* laranja do céu da capa #1 */
+    --brilho: rgba(232, 131, 42, 0.35);
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -12,78 +29,224 @@ html {
 body {
     font-family: 'Bebas Neue', sans-serif;
     line-height: 1.6;
-    background-color: #000000;
-    color: #dc2626;
+    color: var(--destaque);
     min-height: 100vh;
+    /* brilho azul-petróleo no topo e um toque de laranja embaixo, como nas capas */
+    background:
+        radial-gradient(1200px 600px at 50% -10%, var(--fundo-glow) 0%, transparent 60%),
+        radial-gradient(1000px 500px at 50% 115%, rgba(232, 131, 42, 0.14) 0%, transparent 60%),
+        var(--fundo);
+    background-attachment: fixed;
 }
 
-/* BANNER: só aparece no topo */
-.BannerPage img {
-    display: block;
-    width: 100%;
-    height: auto;   /* mostra a imagem inteira */
-}
-
-/* BARRA FIXA: só nome da página + nav, acompanha até o final */
+/* BARRA FIXA: nome da página em cima e menu em pílula embaixo, centralizados */
 .SiteHeader {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.92);
-    border-bottom: 2px solid #dc2626;
+    background-color: rgba(10, 20, 24, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--laranja);
 }
 
 .NavPage {
     display: flex;
+    flex-direction: column;     /* título em cima, menu embaixo */
     align-items: center;
-    justify-content: space-between;
+    gap: 0.4rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.5rem 2rem;
+    padding: 0.6rem 2rem;
 }
 
 .NavPage h1 {
     font-size: 2rem;
-    letter-spacing: 2px;
-    color: #dc2626;
+    line-height: 1.1;
+    letter-spacing: 3px;
+    color: var(--destaque);
+    text-shadow: 0 0 20px var(--brilho);
 }
 
+/* o menu vira uma pílula arredondada, igual ao modelo */
 .NavPage ul {
     display: flex;
-    gap: 2rem;
-    list-style: none;      /* tira as bolinhas */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+    list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 4px;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: 999px;
 }
 
 .NavPage a {
-    color: #ffffff;
-    text-decoration: none; /* tira o sublinhado roxo */
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    transition: color 0.2s;
+    display: block;
+    color: var(--texto);
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+    padding: 2px 18px;
+    border-radius: 999px;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-.NavPage a:hover,
+.NavPage a:hover {
+    color: var(--destaque);
+}
+
+/* página atual fica preenchida de amarelo */
 .NavPage a[aria-current="page"] {
-    color: #dc2626;
+    background: var(--destaque);
+    color: var(--fundo);
+}
+
+/* BANNER: centralizado, menor, bordas arredondadas e brilho */
+.BannerPage {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem 0.5rem;
+}
+
+.BannerPage img {
+    display: block;
+    width: 100%;
+    max-width: 1000px;          /* diminui/aumenta o banner (ajuste esse valor) */
+    height: auto;               /* mostra a imagem inteira */
+    margin: 0 auto;
+    border-radius: 24px;
+    border: 1px solid var(--borda-forte);
+    box-shadow:
+        0 0 40px var(--brilho),
+        0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 /* Texto de boas-vindas */
 .Intro {
     text-align: center;
-    padding: 2rem 1rem; /* espaçamento esquerda, direita, cima e baixo*/
+    padding: 2rem 1rem;
 }
-/* Evita imagens gigantes na galeria */
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
+
+.Intro h2 {
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    color: var(--texto);
+}
+
+.Intro p {
+    color: var(--texto-suave);
+    letter-spacing: 1px;
 }
 
 footer {
-    text-align:center;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.92);
-    border-top: 2px solid #dc2626;
+    text-align: center;
+    padding: 1.2rem 1rem;
+    color: var(--texto-suave);
+    letter-spacing: 1px;
+    background-color: rgba(10, 20, 24, 0.92);
+    border-top: 2px solid var(--laranja);
+}
+
+footer a {
+    color: var(--destaque);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--texto);
+}
+
+/* Limita a largura da galeria para o conteúdo não esticar em telas grandes */
+.Gallery-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+    /* espaço acima da seção para a barra fixa não cobrir o título */
+    scroll-margin-top: 120px;
+}
+
+/* Blocos de título dos grupos "Aliados" e "Vilões" */
+#aliados-titulo,
+#viloes-titulo {
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#aliados-titulo h2,
+#viloes-titulo h2 {
+    font-size: 2.6rem;
+    color: var(--destaque);
+    letter-spacing: 4px;
+    text-shadow: 0 0 24px var(--brilho);
+}
+
+/* Etiqueta descritiva embaixo de cada título */
+.Section-tag {
+    font-size: 1.2rem;
+    color: var(--texto-suave);
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+/* Grid dos cards. Agora ele também é o "painel" arredondado do modelo.
+   O seletor [class^="gallery-grid"] pega gallery-grid1, gallery-grid2...
+   então vale para Aliados e Vilões mesmo se as classes tiverem número diferente. */
+[class^="gallery-grid"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+}
+
+/* Cada card de personagem */
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--laranja);
+    box-shadow: 0 10px 30px var(--brilho);
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Legenda com o nome do personagem */
+.gallery-item figcaption {
+    text-align: center;
+    padding: 0.8rem 0.5rem;
+    color: var(--texto);
+    font-size: 1.35rem;
+    letter-spacing: 1px;
+    background-color: var(--superficie-2);
+    border-top: 2px solid var(--laranja);
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .NavPage { padding: 0.5rem 1rem; }
+    .NavPage h1 { font-size: 1.6rem; }
+    .NavPage a { font-size: 1.05rem; padding: 2px 12px; }
+    [class^="gallery-grid"] { padding: 1rem; gap: 1rem; }
 }

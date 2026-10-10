@@ -1,0 +1,41 @@
+:root {
+    --fundo: #0a1418;          /* preto esverdeado (noite de Gotham) */
+    --fundo-glow: #12303a;     /* azul-petróleo do brilho no topo */
+    --superficie: #101f26;     /* painéis */
+    --superficie-2: #16303a;   /* cards */
+    --borda: #234a55;
+    --borda-forte: #2f6b78;
+
+    --texto: #efe6cf;          /* creme do papel / pele nas capas */
+    --texto-suave: #8fa9ab;    /* cinza-esverdeado do uniforme */
+
+    --destaque: #f2c94c;       /* amarelo da logo "BATMAN" */
+    --laranja: #e8832a;        /* laranja do céu da capa #1 */
+    --brilho: rgba(232, 131, 42, 0.35);
+}
+
+*,*::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+  font-size: 16px;  
+}
+
+body{
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--destaque);
+    min-height: 100vh;
+    background: radial-gradient(1200px 600px at 50% -10%, var(--fundo-glow) 0%, transparent 60%),
+        radial-gradient(1000px 500px at 50% 115%, rgba(232, 131, 42, 0.14) 0%, transparent 60%),
+        var(--fundo);
+        background-attachment: fixed;
+}
+
+.SiteHeader{
+  position: sticky;  
+}
